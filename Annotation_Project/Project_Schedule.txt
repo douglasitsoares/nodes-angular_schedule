@@ -1,0 +1,14 @@
+Project Schedule System
+
+Background : This application is a type for schedule services for many businness as needed to have a type of agenda control 
+	The idea is simplify the service and organize handle in each duty simple as seens
+
+Create a MongoDB 
+	- tbl_schedule
+		- id (key natural by collection)
+		- date
+		- time
+		- userId
+
+Just it for first steps to simplify the application to grown up for many acomplishments
+		

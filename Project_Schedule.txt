@@ -1,0 +1,32 @@
+Project Schedule System
+
+Background : This application is a type for schedule services for many businness as needed to have a type of agenda control 
+	The idea is simplify the service and organize handle in each duty simple as seens
+
+001_Implementation Schedule, details of this first changed below:
+	Create a MongoDB 
+		- tbl_schedule
+			- id (key natural by collection)
+			- service
+			- details
+			- imagePath
+			- date
+			- time
+			- creator
+	Just it for first steps to simplify the application to grown up for many acomplishments
+
+	* Change Backend ( {
+		- Models, create one new schedule just increments another fields based on posts models 
+		- Controllers, create a new schedule
+		- Routes, create a new schedule and configure information of end points
+		- App add schedule in use routes backend 
+		
+		>> Result after this changed the program run backend and front end without information of schedule 
+			as expected once not exists no information for that
+		****Error Mongo was an error to create directly in AtlasMongo than I create using the command below 
+			>> //scheduleSchema.index({ service: 1, details: 1 }); and rename code model name
+
+	* Change FrontEnd
+		- schedule.models
+		- schedule list
+		- schedule service
