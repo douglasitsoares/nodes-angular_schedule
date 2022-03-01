@@ -30,3 +30,10 @@ Background : This application is a type for schedule services for many businness
 		- schedule.models
 		- schedule list
 		- schedule service
+		
+		>> Result after many attempts the basic of shedulist is working without errors, continued to working on the create
+		new schedule by forms anyway the process continues
+		
+		- schedule create >> was generated basic input working as expected changing routes and others configurations
+		good experience to go ahead to another changes on the system application commit >>002_scheduleCreate
+

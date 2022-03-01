@@ -2,33 +2,31 @@ import { Component, OnDestroy, OnInit} from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 
-import { PostsService } from "../posts.service";
-import { Post } from "../post.model";
+import { SchedulesService } from "../schedules.service";
+import { Schedule } from "../schedule.model";
 import { mimeType } from "../../middleware/mime-type.validator";
 import { AuthService } from "src/app/auth/auth.service";
 import { Subscription} from "rxjs";
 
 @Component({
-  selector: "app-post-create",
-  templateUrl: "./post-create.component.html",
-  styleUrls: ["./post-create.component.css"]
+  selector: "app-schedule-create",
+  templateUrl: "./schedule-create.component.html",
+  styleUrls: ["./schedule-create.component.css"]
 })
-export class PostCreateComponent implements OnInit, OnDestroy {
-  enteredTitle = "";
-  enteredContent = "";
-  post: Post;
+export class ScheduleCreateComponent implements OnInit, OnDestroy {
+  schedule: Schedule;
   isLoading = false;
   form: FormGroup;
   imagePreview: string;
   userId: string;
-  infoPostId =false;
+  infoScheduleId =false;
   private mode = "create";
-  private postId: string;
+  private scheduleId: string;
   private authStatusSub:Subscription;
 
   constructor(
     private authService: AuthService,
-    public postsService: PostsService,
+    public schedulesService: SchedulesService,
     public route: ActivatedRoute
   ) {}
 
@@ -38,10 +36,10 @@ export class PostCreateComponent implements OnInit, OnDestroy {
     });
 
     this.form = new FormGroup({
-      title: new FormControl(null, {
+      service: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(3)]
       }),
-      content: new FormControl(null, { validators: [Validators.required] }),
+      details: new FormControl(null, { validators: [Validators.required] }),
       image: new FormControl(null, {
         validators: [Validators.required],
         asyncValidators: [mimeType]
@@ -49,38 +47,39 @@ export class PostCreateComponent implements OnInit, OnDestroy {
     });
     this.userId = this.authService.getUserId();
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.has("postId")) {
+      if (paramMap.has("scheduleId")) {
         this.mode = "edit";
-        this.postId = paramMap.get("postId");
+        this.scheduleId = paramMap.get("scheduleId");
         this.isLoading = true;
 
-        this.postsService.getPost(this.postId).subscribe(postData => {
+        this.schedulesService.getSchedule(this.scheduleId).subscribe(scheduleData => {
           this.isLoading = false;
-          this.post = {
-            id: postData._id,
-            title: postData.title,
-            content: postData.content,
-            imagePath: postData.imagePath,
-            creator: postData.creator
+          this.schedule = {
+            id: scheduleData._id,
+            service: scheduleData.service,
+            details: scheduleData.details,
+            hour:scheduleData.hour,
+            imagePath: scheduleData.imagePath,
+            creator: scheduleData.creator
           };
-          // Checking if the post is responsible by user logged
-          if (this.userId === this.post.creator){
-            this.infoPostId = true;
+          // Checking if the schedule is responsible by user logged
+          if (this.userId === this.schedule.creator){
+            this.infoScheduleId = true;
           }else{
-            this.infoPostId = false;
+            this.infoScheduleId = false;
           }
 
 
           this.form.setValue({
-            title: this.post.title,
-            content: this.post.content,
-            image: this.post.imagePath
+            service: this.schedule.service,
+            details: this.schedule.details,
+            image: this.schedule.imagePath
           });
         });
       } else {
         this.mode = "create";
-        this.postId = null;
-        this.infoPostId = true;
+        this.scheduleId = null;
+        this.infoScheduleId = true;
       }
     });
   }
@@ -96,23 +95,26 @@ export class PostCreateComponent implements OnInit, OnDestroy {
     reader.readAsDataURL(file);
   }
 
-  onSavePost() {
+  onSaveSchedule() {
     if (this.form.invalid) {
       return;
     }
     this.isLoading = true;
     if (this.mode === "create") {
-      this.postsService.addPost(
-        this.form.value.title,
-        this.form.value.content,
+      this.schedulesService.addSchedule(
+        this.form.value.service,
+        this.form.value.details,
+        this.userId,
+        null,
         this.form.value.image
       );
     } else {
 
-      this.postsService.updatePost(
-        this.postId,
-        this.form.value.title,
-        this.form.value.content,
+      this.schedulesService.updateSchedule(
+        this.scheduleId,
+        this.form.value.service,
+        this.form.value.details,
+        null,
         this.form.value.image
       );
 

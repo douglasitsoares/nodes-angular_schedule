@@ -66,11 +66,11 @@ export class SchedulesService {
     );
   }
 
-  addSchedule(service: string, details: string, hour: string, image: File) {
+  addSchedule(service: string, details: string, creator: string, hour: string, image: File) {
     const scheduleData = new FormData();
     scheduleData.append("service", service);
     scheduleData.append("details", details);
-
+    scheduleData.append("creator", creator);
     scheduleData.append("hour", hour);
     scheduleData.append("image", image, service);
     this.http
@@ -79,7 +79,7 @@ export class SchedulesService {
         scheduleData
       )
       .subscribe(responseData => {
-        this.router.navigate(["/"]);
+        this.router.navigate(["/schedule/"]);
       });
   }
 
@@ -91,7 +91,6 @@ export class SchedulesService {
       scheduleData.append("id", id);
       scheduleData.append("service", service);
       scheduleData.append("details", details);
-
       scheduleData.append("hour", hour);
       scheduleData.append("image", image, service);
     } else {

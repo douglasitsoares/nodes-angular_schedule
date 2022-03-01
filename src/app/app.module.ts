@@ -7,6 +7,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { AppComponent } from "./app.component";
 import { PostCreateComponent } from "./posts/post-create/post-create.component";
+import { ScheduleCreateComponent } from "./schedules/schedule-create/schedule-create.component";
 import { HeaderComponent } from "./header/header.component";
 import { LoginComponent } from "./auth/login/Login.component";
 import { SignupComponent } from "./auth/signup/Signup.component";
@@ -18,10 +19,12 @@ import { ErrorInterceptor } from "./error-interceptor";
 import { ErrorComponent } from "./error/error.component";
 import { AngularMaterialModule } from "./angular-material.module";
 
+
 @NgModule({
   declarations: [
     AppComponent,
     PostCreateComponent,
+    ScheduleCreateComponent,
     HeaderComponent,
     PostListComponent,
     ScheduleListComponent,
