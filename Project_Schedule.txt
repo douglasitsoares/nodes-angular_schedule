@@ -36,4 +36,7 @@ Background : This application is a type for schedule services for many businness
 		
 		- schedule create >> was generated basic input working as expected changing routes and others configurations
 		good experience to go ahead to another changes on the system application commit >>002_scheduleCreate
-
+		
+		-schedule edit >> this module needs to change to edit schedule or just cancel it.
+			* change app-routing
+			* change schedule list html to navigate right schedule/edit

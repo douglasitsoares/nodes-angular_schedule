@@ -107,7 +107,7 @@ export class SchedulesService {
     this.http
       .put(BACKEND_URL + id, scheduleData)
       .subscribe(response => {
-        this.router.navigate(["/"]);
+        this.router.navigate(["/schedule/"]);
       });
 }
 
