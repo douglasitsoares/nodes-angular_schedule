@@ -1,11 +1,56 @@
 <mat-toolbar color="primary">
+  <button mat-icon-button class = "white-icon" [matMenuTriggerFor]="menu"  aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/login" *ngIf="!userIsAuthenticated">
+      <mat-icon>vpn_key</mat-icon>
+      <span>Login</span>
+    </button>
+
+    <button mat-menu-item routerLink="/signup" *ngIf="!userIsAuthenticated">
+      <mat-icon>assignment_ind</mat-icon>
+      <span>Signup</span>
+    </button>
+
+    <button mat-menu-item  [matMenuTriggerFor]="cadastros" *ngIf="userIsAuthenticated">
+      <mat-icon>directions_car</mat-icon>
+      <span>Schedule </span>
+    </button>
+
+    <mat-menu #cadastros="matMenu" yPosition="below">
+      <button mat-menu-item routerLink="/schedule/create">
+        <mat-icon>date_range</mat-icon>
+        <span>New Schedule</span>
+      </button>
+
+        <button mat-menu-item routerLink="/schedule">
+          <mat-icon>view_list</mat-icon>
+          <span>All Schedules</span>
+        </button>
+
+        <button mat-menu-item>
+          <mat-icon>work</mat-icon>
+          <span>Cancel Schedule</span>
+        </button>
+
+    </mat-menu>
+
+  </mat-menu>
+
+
+
   <span>
-    <a routerLink="/">MyMessages</a>
+    <a routerLink="/">Schedule System</a>
   </span>
   <span class="spacer"></span>
   <ul>
     <li *ngIf="userIsAuthenticated">
-      <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Post</a>
+      <button mat-menu-item routerLink="/schedule/create" routerLinkActive="mat-accent" class = "white-icon">
+        <mat-icon class = "white-icon">people</mat-icon>
+        <span>Personal Profile</span>
+      </button>
+
     </li>
     <li *ngIf="!userIsAuthenticated">
       <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
@@ -13,8 +58,13 @@
     <li *ngIf="!userIsAuthenticated">
       <a mat-button routerLink="/signup" routerLinkActive="mat-accent">Signup</a>
     </li>
+
     <li *ngIf="userIsAuthenticated">
-      <button mat-button (click)="onLogout()" >Logout</button>
+      <button mat-menu-item (click)="onLogout()" routerLinkActive="mat-accent" class = "white-icon">
+        <mat-icon></mat-icon>
+        <span>Logout</span>
+      </button>
+      <!-- <button mat-button (click)="onLogout()" >Logout</button>  -->
     </li>
   </ul>
 </mat-toolbar>

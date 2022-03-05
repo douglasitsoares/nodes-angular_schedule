@@ -6,6 +6,3 @@ export interface Schedule {
   imagePath: string;
   creator:string;
 }
-
-
-const mongoose = require("mongoose");
