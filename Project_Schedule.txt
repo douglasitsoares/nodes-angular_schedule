@@ -1,4 +1,5 @@
 Project Schedule System
+TOKEN GitHub : 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
 
 Background : This application is a type for schedule services for many businness as needed to have a type of agenda control 
 	The idea is simplify the service and organize handle in each duty simple as seens
@@ -40,3 +41,9 @@ Background : This application is a type for schedule services for many businness
 		-schedule edit >> this module needs to change to edit schedule or just cancel it.
 			* change app-routing
 			* change schedule list html to navigate right schedule/edit
+		- schedule delete >> works fine
+
+		- Insert Header Icon for choices >> this implementation covered the choice of functionality in app needs to navigation
+		as safely on software 
+		- Default Assignments (Login and Signup)
+		*** Works with more useful requirements
