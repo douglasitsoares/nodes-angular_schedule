@@ -1,0 +1,12 @@
+.menu {
+  text-align: center;
+}
+
+.menu-card {
+  max-width: 400px;
+}
+
+.menu-header-image {
+  background-image: url();
+  background-size: cover;
+}

@@ -6,6 +6,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 
 import { AppComponent } from "./app.component";
+import { HomeComponent } from "./home/home.component";
 import { PostCreateComponent } from "./posts/post-create/post-create.component";
 import { ScheduleCreateComponent } from "./schedules/schedule-create/schedule-create.component";
 import { HeaderComponent } from "./header/header.component";
@@ -23,6 +24,7 @@ import { AngularMaterialModule } from "./angular-material.module";
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     PostCreateComponent,
     ScheduleCreateComponent,
     HeaderComponent,
