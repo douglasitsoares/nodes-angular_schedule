@@ -46,4 +46,6 @@ Background : This application is a type for schedule services for many businness
 		- Insert Header Icon for choices >> this implementation covered the choice of functionality in app needs to navigation
 		as safely on software 
 		- Default Assignments (Login and Signup)
+		- Home screen initial to show when the first time on app
 		*** Works with more useful requirements
+		Sugestion : Increments List Schedule, after put date picker and filter to hour increments it to have a nice knowledge
