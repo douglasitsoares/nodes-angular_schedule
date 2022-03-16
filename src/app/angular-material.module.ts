@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core";
 import {
   MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
   MatCardModule,
   MatButtonModule,
   MatIconModule,
@@ -15,6 +17,8 @@ import {
 @NgModule({
   exports: [
     MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatCardModule,
     MatButtonModule,
     MatIconModule,

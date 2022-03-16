@@ -31,9 +31,7 @@ export class SchedulesService {
               service: schedule.service,
               details: schedule.details,
               id: schedule._id,
-              /*
               date: schedule.date,
-              */
               hour: schedule.hour,
               imagePath: schedule.imagePath,
 
@@ -61,16 +59,17 @@ export class SchedulesService {
   }
 
   getSchedule(id: string) {
-    return this.http.get<{ _id: string, service: string, details: string, hour: string, imagePath: string, creator:string }>(
+    return this.http.get<{ _id: string, service: string, details: string, date: string, hour: string, imagePath: string, creator:string }>(
       BACKEND_URL + id
     );
   }
 
-  addSchedule(service: string, details: string, creator: string, hour: string, image: File) {
+  addSchedule(service: string, details: string, creator: string, date: string, hour: string, image: File) {
     const scheduleData = new FormData();
     scheduleData.append("service", service);
     scheduleData.append("details", details);
     scheduleData.append("creator", creator);
+    scheduleData.append("date", date);
     scheduleData.append("hour", hour);
     scheduleData.append("image", image, service);
     this.http
@@ -83,7 +82,7 @@ export class SchedulesService {
       });
   }
 
-  updateSchedule(id: string, service: string, details: string, hour: string, image: File | string) {
+  updateSchedule(id: string, service: string, details: string, date: string, hour: string, image: File | string) {
     let scheduleData: Schedule | FormData;
 
     if (typeof image === "object") {
@@ -91,6 +90,7 @@ export class SchedulesService {
       scheduleData.append("id", id);
       scheduleData.append("service", service);
       scheduleData.append("details", details);
+      scheduleData.append("date", date);
       scheduleData.append("hour", hour);
       scheduleData.append("image", image, service);
     } else {
@@ -98,7 +98,7 @@ export class SchedulesService {
         id: id,
         service: service,
         details: details,
-
+        date: date,
         hour: hour,
         imagePath: image,
         creator: null

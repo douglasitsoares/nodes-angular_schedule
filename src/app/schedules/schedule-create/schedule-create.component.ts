@@ -20,6 +20,7 @@ export class ScheduleCreateComponent implements OnInit, OnDestroy {
   imagePreview: string;
   userId: string;
   infoScheduleId =false;
+  maxDate;
   private mode = "create";
   private scheduleId: string;
   private authStatusSub:Subscription;
@@ -33,6 +34,8 @@ export class ScheduleCreateComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.authStatusSub = this.authService.getAuthStatusListener().subscribe( authStatus => {
       this.isLoading = false;
+      this.maxDate = new Date();
+      this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
     });
 
     this.form = new FormGroup({
@@ -40,6 +43,7 @@ export class ScheduleCreateComponent implements OnInit, OnDestroy {
         validators: [Validators.required, Validators.minLength(3)]
       }),
       details: new FormControl(null, { validators: [Validators.required] }),
+      date:new FormControl(null, { validators: [Validators.required] }),
       image: new FormControl(null, {
         validators: [Validators.required],
         asyncValidators: [mimeType]
@@ -58,6 +62,7 @@ export class ScheduleCreateComponent implements OnInit, OnDestroy {
             id: scheduleData._id,
             service: scheduleData.service,
             details: scheduleData.details,
+            date: scheduleData.date,
             hour:scheduleData.hour,
             imagePath: scheduleData.imagePath,
             creator: scheduleData.creator
@@ -73,6 +78,7 @@ export class ScheduleCreateComponent implements OnInit, OnDestroy {
           this.form.setValue({
             service: this.schedule.service,
             details: this.schedule.details,
+            date: this.schedule.date,
             image: this.schedule.imagePath
           });
         });
@@ -105,6 +111,7 @@ export class ScheduleCreateComponent implements OnInit, OnDestroy {
         this.form.value.service,
         this.form.value.details,
         this.userId,
+        this.form.value.date,
         null,
         this.form.value.image
       );
@@ -114,6 +121,7 @@ export class ScheduleCreateComponent implements OnInit, OnDestroy {
         this.scheduleId,
         this.form.value.service,
         this.form.value.details,
+        this.form.value.date,
         null,
         this.form.value.image
       );

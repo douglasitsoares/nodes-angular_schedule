@@ -7,7 +7,7 @@ exports.scheduleCreate =
     service: req.body.service,
     details: req.body.details,
     imagePath: url + "/images/" + req.file.filename,
-    //date: req.body.date,
+    date: req.body.date,
     hour: req.body.hour,
     creator: req.userData.userId
   });
@@ -20,7 +20,7 @@ exports.scheduleCreate =
         service: createdSchedule.service,
         details: createdSchedule.details,
         imagePath: createdSchedule.imagePath,
-        //date: createdSchedule.date,
+        date: createdSchedule.date,
         hour: createdSchedule.hour,
         creator: createdSchedule.userId
       }
@@ -44,7 +44,7 @@ exports.scheduleUpdate = (req, res, next) => {
     service: req.body.service,
     details: req.body.details,
     imagePath:imagePath,
-    //date: req.body.date,
+    date: req.body.date,
     hour: req.body.hour,
     creator: req.userData.userId
   });

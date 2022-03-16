@@ -1,5 +1,5 @@
 Project Schedule System
-TOKEN GitHub : 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
+TOKEN GitHub : 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
 
 Background : This application is a type for schedule services for many businness as needed to have a type of agenda control 
 	The idea is simplify the service and organize handle in each duty simple as seens
@@ -48,4 +48,11 @@ Background : This application is a type for schedule services for many businness
 		- Default Assignments (Login and Signup)
 		- Home screen initial to show when the first time on app
 		*** Works with more useful requirements
+		- Putting Date on datepicker, changes
+			* schedule.create html
+			* schedule models
+			
+		- Backend
+			* models
+
 		Sugestion : Increments List Schedule, after put date picker and filter to hour increments it to have a nice knowledge
